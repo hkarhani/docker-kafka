@@ -18,8 +18,10 @@ in the same container. This means:
 Run
 ---
 
-```bash
-docker run -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=`docker-machine ip \`docker-machine active\`` --env ADVERTISED_PORT=9092 spotify/kafka
+Extract your docker-machine IP or use your localhost IP (with latest Docker CE 17.04): 
+
+```
+docker run -p 2181:2181 -p 9092:9092 -p 9093:9093 -p 9094:9094 --env ADVERTISED_HOST=192.168.2.157 --env ADVERTISED_PORT=9092 hkarhani/kafka3 
 ```
 
 ```bash
@@ -59,6 +61,11 @@ In the box
   The docker image with both Kafka and Zookeeper. Built from the `kafka`
   directory.
 
+* **spotify/kafka3**
+
+  The docker image with 3x Kafka Brokers and a Zookeeper. Built from the `kafka3`
+  directory.
+  
 * **spotify/kafkaproxy**
 
   The docker image with Kafka, Zookeeper and a Kafka 7 proxy that can be
@@ -68,13 +75,14 @@ Public Builds
 ---
 
 https://registry.hub.docker.com/u/spotify/kafka/
-
+https://hub.docker.com/r/hkarhani/docker-kafka/ (kafka3 built)
 https://registry.hub.docker.com/u/spotify/kafkaproxy/
 
 Build from Source
 ---
 
     docker build -t spotify/kafka kafka/
+    docker build -t hkarhani/kafka3 kafka3/
     docker build -t spotify/kafkaproxy kafkaproxy/
 
 Todo
